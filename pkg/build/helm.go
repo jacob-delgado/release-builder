@@ -16,14 +16,16 @@ package build
 
 import (
 	"fmt"
-	"github.com/ghodss/yaml"
 	"io/ioutil"
-	"istio.io/pkg/log"
 	"os"
 	"path"
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/ghodss/yaml"
+
+	"istio.io/pkg/log"
 
 	"istio.io/release-builder/pkg/model"
 )
@@ -85,8 +87,8 @@ func sanitizeTemplate(manifest model.Manifest, p string) error {
 // as it is required for both the helm charts and the archive
 func SanitizeAllCharts(manifest model.Manifest) error {
 	for _, chart := range helmCharts {
-			if err := sanitizeChart(manifest, path.Join(manifest.RepoDir("istio"), chart)); err != nil {
-				return fmt.Errorf("failed to sanitze chart %v: %v", chart, err)
+		if err := sanitizeChart(manifest, path.Join(manifest.RepoDir("istio"), chart)); err != nil {
+			return fmt.Errorf("failed to sanitze chart %v: %v", chart, err)
 		}
 	}
 	return nil
